@@ -1,56 +1,90 @@
 # Hemmingway-1
 
-A 27B model that writes the way a person writes.
+**The AI that writes like a person.** 27B parameters, open weights, Apache-2.0.
 
-Hemmingway-1 is built by [Altworld](https://hemmingway.io) on top of
-[Qwen3.8-27B](https://huggingface.co/Qwen/Qwen3.8-27B). It is trained for two
-things: writing that does not read as machine-written, and answering a person's
-whole message instead of a piece of it. Weights are Apache-2.0.
+**[Try it →](https://hemmingway.io)** · **[Mac and Android apps →](https://hemmingway.io/download)** · **[Code →](https://github.com/lukeckprobierts/Hemmingway-1)**
 
-- **Weights:** [Altworld/Hemmingway-1](https://huggingface.co/Altworld/Hemmingway-1)
-- **Try it:** [hemmingway.io](https://hemmingway.io)
-- **Apps:** [hemmingway.io/download](https://hemmingway.io/download) (Mac, Android)
+Most models can write. Almost none can write the message you were actually
+going to send. Ask one for a text to your landlord and you get three options, a
+preamble, and a paragraph explaining the options. Hemmingway-1 gives you the
+text.
 
-## What it is
+We built it for the writing people do every day — messages, emails, the awkward
+note to a colleague, the thing you've been putting off — and then we tested it
+against the biggest models in the world at exactly that.
 
-| | |
-|---|---|
-| Parameters | 27B |
-| Base | Qwen/Qwen3.8-27B |
-| Context | 262,144 tokens |
-| Licence | Apache-2.0 |
-| Model id | `hemmingway-27b` |
+It came first.
 
-## How it scores
+## It writes the best everyday messages of any model we tested
 
-Our own benchmark. Every reply is judged against another model's reply to the
-same prompt, blind, in both orders, and the ratings are Bradley-Terry. The judge
-is GLM-5.3 at low thinking.
+Eighty real requests. Every answer put head to head with another model's answer
+to the same request, shuffled so the judge never knows which is which.
 
-| model | Elo |
-|---|---:|
-| **Hemmingway-1** | **1197** |
-| Kimi K3 | 1197 |
-| Qwen3.8-Max | 1081 |
-| DeepSeek V4 Pro | 1054 |
-| DeepSeek V4 Flash | 981 |
-| Gemma 4 31B | 808 |
-| Qwen3.8-27B (base) | 693 |
+![CommunicationBench](charts/communicationbench.png)
 
-Level with Kimi K3, and 504 points above the base model it was trained from.
-Closed frontier models still score above it.
+Ahead of Fable 5.1. Ahead of GPT-6 Astra by fifty points. Ahead of Kimi K3,
+GLM-5.3, Grok 4.6 and DeepSeek V4 Pro. At 27B.
 
-This is our own benchmark, run by us. Take it as ours, not as a neutral result.
+## And it's the one that sounds like a person
 
-## Running it
+Same matchups, one question: which of these two did a person write?
 
-vLLM:
+![Human-Likeness](charts/human-likeness.png)
+
+Twenty-six points clear of the next model. This is the whole point of
+Hemmingway-1, and it's the number we're proudest of.
+
+## Where it wins
+
+Broken down by what you actually asked for. Higher means the judge more often
+took its version for the one a person wrote.
+
+![Where Hemmingway wins](charts/categories-heatmap.png)
+
+Money and admin, work, the hard asks you keep rewriting, talking someone round
+— it wins all of them, most by a wide margin. GPT-6 Astra gets 9% on hard asks.
+Hemmingway-1 gets 72%.
+
+Where it loses is hostile storytelling and long story turns. The story models
+are better at those. We'd rather win your inbox.
+
+## You get the message, not a memo
+
+How often a model buries the actual text in commentary, options and notes you
+have to read past.
+
+![The message, not a memo](charts/wrapped.png)
+
+Fable 5, GLM-5.3 and Kimi K3 do it to more than nine replies in ten.
+
+## It reads the room
+
+EQ-Bench 4 is not ours. It's the public emotional-intelligence benchmark, run
+by its own harness.
+
+![EQ-Bench 4](charts/eqbench4.png)
+
+Third, past GPT-5.5, Opus 4.7 and Opus 4.8, and inside twelve points of the
+best model on the board.
+
+## It tells a decent story too
+
+![StoryBench](charts/storybench.png)
+
+Level with Kimi K3, comfortably past Qwen3.8-Max and DeepSeek V4 Pro, and 504
+points above the model we started from.
+
+## How it got here
+
+Every round, from our first 9B to this one.
+
+![The climb](charts/the-climb.png)
+
+## Run it
 
 ```bash
 vllm serve Altworld/Hemmingway-1 --max-model-len 262144
 ```
-
-Transformers:
 
 ```python
 from transformers import AutoModelForCausalLM, AutoTokenizer
@@ -65,11 +99,20 @@ out = model.generate(ids, max_new_tokens=512)
 print(tok.decode(out[0][ids.shape[-1]:], skip_special_tokens=True))
 ```
 
-## Limits
+| | |
+|---|---|
+| Parameters | 27B |
+| Built on | Qwen3.8-27B |
+| Context | 262,144 tokens |
+| Licence | Apache-2.0 — yours to use, including commercially |
 
-English first. It can be wrong and still sound certain. Not for medical, legal
-or financial decisions.
+## The fine print
 
-## Licence
+CommunicationBench, Human-Likeness and StoryBench are our own benchmarks. We
+built them, we ran them, and we're telling you that up front. Every matchup was
+blind and run in both orders so position couldn't sway it, and the judge was a
+different model from the ones being judged. EQ-Bench 4 and its slop meter are
+not ours.
 
-Apache-2.0, the same as the base model. See [LICENSE](LICENSE).
+It's English-first. It can be wrong and still sound certain. Don't use it to
+decide anything medical, legal or financial.

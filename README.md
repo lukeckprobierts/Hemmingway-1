@@ -1,6 +1,6 @@
 # Hemmingway-1
 
-**The AI that writes like a person.** 27B parameters, open weights, Apache-2.0.
+**The AI that writes like a person.** 27B parameters, open weights, free for non-commercial use.
 
 **[Weights →](https://huggingface.co/Altworld/Hemmingway-1)** · **[Try it →](https://hemmingway.io)** · **[Mac and Android apps →](https://hemmingway.io/download)** · **[Code →](https://github.com/lukeckprobierts/Hemmingway-1)** · **[Product Hunt →](https://www.producthunt.com/products/hemmingway-ai)**
 
@@ -97,7 +97,16 @@ print(tok.decode(out[0][ids.shape[-1]:], skip_special_tokens=True))
 | Parameters | 27B |
 | Built on | Qwen3.8-27B |
 | Context | 262,144 tokens |
-| Licence | Apache-2.0, yours to use, including commercially |
+| Licence | CC BY-NC 4.0, free for non-commercial use; commercial use by agreement |
+
+## Licence
+
+Hemmingway-1 is free for personal, research and other non-commercial use under
+[CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/). Download it, run
+it, fine-tune it and share it, as long as you credit Hemmingway-1.
+
+Commercial use needs a separate agreement with us. We are happy to work with
+anyone who reaches out: luka@hemmingway.io
 
 ## The fine print
 

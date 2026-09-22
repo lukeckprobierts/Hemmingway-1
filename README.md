@@ -2,7 +2,7 @@
 
 **The AI that writes like a person.** 27B parameters, open weights, Apache-2.0.
 
-**[Weights →](https://huggingface.co/Altworld/Hemmingway-1)** · **[Try it →](https://hemmingway.io)** · **[Mac and Android apps →](https://hemmingway.io/download)** · **[Code →](https://github.com/lukeckprobierts/Hemmingway-1)**
+**[Weights →](https://huggingface.co/Altworld/Hemmingway-1)** · **[Try it →](https://hemmingway.io)** · **[Mac and Android apps →](https://hemmingway.io/download)** · **[Code →](https://github.com/lukeckprobierts/Hemmingway-1)** · **[Product Hunt →](https://www.producthunt.com/products/hemmingway-ai)**
 
 Ask most models for a text to your landlord and you get three options, a
 preamble, and a paragraph explaining the options. Hemmingway-1 just gives you
